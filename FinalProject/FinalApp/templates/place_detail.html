@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+    
+{% block body %}
+    <style>
+        .map{
+            width: 100%;
+            height: calc(100vh - 300px);
+            background-color: orange;
+        }
+        .bottom{
+            display: flex;
+        }
+        .img{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+    <div class = "map"></div>
+    <div class = "bottom">
+        <div class = "img"></div>
+        <div class = "content">
+            <p>이름</p>
+            <p>주소</p>
+            <input type="button" id = "route" style="width: 50px">
+        </div>
+    </div>
+    <script>
+        document.getElementById("route").onclick = function() {
+            location.href = "/route";
+        }
+    </script>
+{% endblock %}
