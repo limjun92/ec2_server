@@ -89,10 +89,10 @@ body {
   height: 150px;
 }
 
-.modal_bottom input[type="submit"] {
+.modal_bottom #submit {
   background-color: transparent;
   border: none;
-  color: #E16350;
+  color: black;
   font-size: 15px;
 }
 
@@ -117,8 +117,14 @@ body {
   border-radius: 5px;
 }
 
+
+/* loading */
+#loading {
+  display: none;
+  margin-top: 50%;
+}
 svg {
-  width: 100%;
+  width: 500px;
   height: 100%;
   visibility: hidden;
 }
