@@ -17,6 +17,7 @@
 .slideshow-container {
   max-width: 100%;
   position: flex;
+  height: calc(100vh - 120px);
   flex-direction: column;
   margin: auto;
 }
