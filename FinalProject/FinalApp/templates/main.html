@@ -47,12 +47,12 @@
                     <button id = "modal_close" onclick="modal_close()"><i class="fas fa-times"></i></button>
                 </div>
 
-                <form action = "/place/" id ="photo_form" enctype="multipart/form-data" method="POST">
+                <form action = "/place_list/" method="POST" id ="photo_form" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class = "modal_bottom">
                         <div class="filebox"> 
                             <label for="file">사진 첨부</label> 
-                            <input type="file" id="file" accept="image/*" required>
+                            <input type="file" id="file" accept="image/*" name = "photo" required>
                         </div>
 
                         <button type = "button" id = "submit">장소 추천받기</button>
