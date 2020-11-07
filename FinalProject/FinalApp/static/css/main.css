@@ -7,6 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #E16350;
+  font-family: '국민체조L';
 }
 #title {
   display: flex;
@@ -14,13 +15,12 @@ body {
   width: 100%;
   height: 90px;
   margin-top: 150px;
-  font-family: '국민체조L';
   font-size: 45px;
   color: white;
 }
 
 #modal_open{
-  width: 80px;
+  width: 200px;
   height: 50px;
   margin-top: 20%;
   background-color: transparent;
