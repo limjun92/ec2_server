@@ -20,7 +20,7 @@ from FinalApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main),
-    # path('account/', include('account.urls')),
+    path('account/', include('account.urls')),
     path('FinalApp/', include('FinalApp.urls')),
     # path('place_list/', views.place_list),
     # path('place_detail/', views.place_detail),
