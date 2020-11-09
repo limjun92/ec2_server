@@ -10,7 +10,7 @@ var fileName;
 $("#file").on('change',function(){
     fileName = $("#file").val();
     if(fileName != null) {
-        $('#submit').css('color', '#E16350');
+        $('#submit').css('color', '#018ABE');
     }
 });
 
