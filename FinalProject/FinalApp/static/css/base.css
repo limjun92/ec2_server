@@ -1,7 +1,3 @@
-@font-face {
-    font-family: '국민체조L';
-    src: url('../font/210 국민체조L.ttf');
-}
 body {
     display: flex;
     flex-direction: column;
@@ -14,11 +10,10 @@ body {
     width: 100%;
     height: 250px;
     font-size: 25px;
-    background-color: #E16350;
+    background-color:#018ABE;
     color: white;
 }
 
 #title p {
-    font-family: '국민체조L';
     margin: 15px;
 }
