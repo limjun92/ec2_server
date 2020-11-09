@@ -16,6 +16,11 @@ def main(request):
 
 def place_list(request):
     
+    df = pd.read_csv('csv_final_final.csv')
+    img_url_df = df[['img_url', 'display']]
+
+    img_url_dict = dict(img_url_df.values[:,::-1])
+    
     with open("amend_model_1.json", "r") as f :
         loaded_model_json = f.read()
 
@@ -41,18 +46,21 @@ def place_list(request):
                 'address': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 2],
                 'long': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 3],
                 'lat': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 4],
+                'img_url' : 'img/' + img_url_dict[class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 1]],
             },
             'second': {
-                'name': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 1],
-                'address': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 2],
-                'long': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 3],
-                'lat': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 4],
+                'name': class_name.iloc[np.where(total_score == total_sort_score[-3])[0][0], 1],
+                'address': class_name.iloc[np.where(total_score == total_sort_score[-3])[0][0], 2],
+                'long': class_name.iloc[np.where(total_score == total_sort_score[-3])[0][0], 3],
+                'lat': class_name.iloc[np.where(total_score == total_sort_score[-3])[0][0], 4],
+                'img_url' : 'img/' + img_url_dict[class_name.iloc[np.where(total_score == total_sort_score[-3])[0][0], 1]],
             },
             'third': {
-                'name': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 1],
-                'address': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 2],
-                'long': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 3],
-                'lat': class_name.iloc[np.where(total_score == total_sort_score[-2])[0][0], 4],
+                'name': class_name.iloc[np.where(total_score == total_sort_score[-4])[0][0], 1],
+                'address': class_name.iloc[np.where(total_score == total_sort_score[-4])[0][0], 2],
+                'long': class_name.iloc[np.where(total_score == total_sort_score[-4])[0][0], 3],
+                'lat': class_name.iloc[np.where(total_score == total_sort_score[-4])[0][0], 4],
+                'img_url' : 'img/' + img_url_dict[class_name.iloc[np.where(total_score == total_sort_score[-4])[0][0], 1]],
             },
         }
 
