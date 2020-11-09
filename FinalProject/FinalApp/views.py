@@ -12,34 +12,30 @@ def main(request):
     return render(request, 'main.html')
 
 def place_list(request):
-    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-    if request.method == "POST":
-        print(request.FILES['photo'])
-    print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
     
-    # with open("model_t.json", "r") as f :
-    #     loaded_model_json = f.read()
+    with open("model_t.json", "r") as f :
+        loaded_model_json = f.read()
 
-    # model = model_from_json(loaded_model_json, custom_objects={'KerasLayer': hub.KerasLayer})
-    # model.load_weights("model_t.h5")
+    model = model_from_json(loaded_model_json, custom_objects={'KerasLayer': hub.KerasLayer})
+    model.load_weights("model_t.h5")
 
-    # if request.method == "POST":
-    #     landmark = request.FILES['photo']
+    if request.method == "POST":
+        landmark = request.FILES['photo']
 
-    #     default_storage.save('image.jpg', ContentFile(landmark.read()))
-    #     path = 'media/image.jpg'
-    #     img = tf.keras.preprocessing.image.load_img(path, target_size=(224, 224),)
-    #     img_array = tf.keras.preprocessing.image.img_to_array(img)
-    #     img_array = tf.expand_dims(img_array, 0) 
-    #     predictions = model.predict(img_array)
-    #     score = tf.nn.softmax(predictions[0])
-    #     # t = np.array(score)
-    #     print(score)
+        default_storage.save('image.jpg', ContentFile(landmark.read()))
+        path = 'media/image.jpg'
+        img = tf.keras.preprocessing.image.load_img(path, target_size=(224, 224),)
+        img_array = tf.keras.preprocessing.image.img_to_array(img)
+        img_array = tf.expand_dims(img_array, 0) 
+        predictions = model.predict(img_array)
+        score = tf.nn.softmax(predictions[0])
+        # t = np.array(score)
+        print(score)
 
-    #     # 여기다가 변수 정해주고, 상위 3~5개 저장 한다. => global 로 저장해두는게 나을듯
+        # 여기다가 변수 정해주고, 상위 3~5개 저장 한다. => global 로 저장해두는게 나을듯
 
-    #     # media 디렉토리 삭제
-    #     shutil.rmtree('media')
+        # media 디렉토리 삭제
+        shutil.rmtree('media')
 
     return render(request, 'place_list.html')
 
