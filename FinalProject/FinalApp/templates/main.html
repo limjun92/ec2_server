@@ -9,6 +9,7 @@
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.3/TweenMax.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -35,13 +36,14 @@
     </div>
 
     <div id="title">
-        <p id = "home">제목제목<p>
-        <p>
-            <a href="{% url 'account:profile' %}">유저페이지</a> 
-        </p>
-    </div>
+        <p id = "home">제목제목</p>
 
-    <button id ="modal_open" onclick="modal_open()"><i class="fas fa-search"></i></button>
+        {% comment %} <p>
+            <a href="{% url 'account:profile' %}">유저페이지</a> 
+        </p> {% endcomment %}
+    </div>
+    <i class="fas fa-plane"></i>
+    <button id ="modal_open" onclick="modal_open()">여행지 검색</button>
 
     <div class = "modal">
         <div id ="modal">
@@ -58,7 +60,7 @@
                             <input type="file" id="file" accept="image/*" name = "photo" required>
                         </div>
 
-                        <button type = "button" id = "submit">장소 추천받기</button>
+                        <button id = "submit">장소 추천받기</button>
                     </div>
                 </form>
             </div>
