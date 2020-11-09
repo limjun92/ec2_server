@@ -10,24 +10,19 @@ var fileName;
 $("#file").on('change',function(){
     fileName = $("#file").val();
     if(fileName != null) {
-        $('#submit').css('color', '#E16350');
+        $('#submit').css('color', '#018ABE');
     }
 });
 
-// $("#submit").on('click',function() {
-//     if(fileName != null) {
-//         setTimeout(function(){
-//             $('#submit').attr('type', 'submit');
-//             $('#submit').trigger("click");
-//             console.log("test");
-//         }, 3000);
-
-//         $("#title").css('display', 'none');
-//         $("#modal_open").css('display', 'none');
-//         $("#modal").css('display', 'none');
-//         $("#loading").css('display', 'block');
-//     }
-// });
+$("#submit").on('click',function() {
+    if(fileName != null) {
+        $("#title").css('display', 'none');
+        $("#airplane").css('display', 'none');
+        $("#modal_open").css('display', 'none');
+        $("#modal").css('display', 'none');
+        $("#loading").css('display', 'block');
+    }
+});
 
 
 
