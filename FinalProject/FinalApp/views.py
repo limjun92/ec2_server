@@ -35,7 +35,7 @@ def place_list(request):
         # 여기다가 변수 정해주고, 상위 3~5개 저장 한다. => global 로 저장해두는게 나을듯
 
         # media 디렉토리 삭제
-        # shutil.rmtree('media')
+        shutil.rmtree('media')
 
     return render(request, 'place_list.html')
 
