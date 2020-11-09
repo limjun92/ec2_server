@@ -28,24 +28,42 @@
     </div>
 </div>
 <div class = "bottom">
-    <button>축제</button>
+    <button onclick="festival()">축제</button>
     <button onclick="restaurant()">음식점</button>
     <button onclick="cafe()">카페</button>
     <button onclick="store()">편의점</button>
     <button onclick="inn()">숙박</button>
+    <button><i class="fas fa-route" style="font-size:30px"></i></button>
 </div>
 
 <script>
+    function festival() {
+        if ($('.map_wrap').css('display') == 'block'){
+            $('.map_wrap').css('display', 'none');
+        }
+    }
     function restaurant() {
+        if($('.map_wrap').css('display') == 'none'){
+            $('.map_wrap').css('display', 'block');
+        }
         $('#FD6').trigger("click");
     }
     function cafe() {
+        if($('.map_wrap').css('display') == 'none'){
+            $('.map_wrap').css('display', 'block');
+        }
         $('#CE7').trigger("click");
     }
     function store() {
+        if($('.map_wrap').css('display') == 'none'){
+            $('.map_wrap').css('display', 'block');
+        }
         $('#CS2').trigger("click");
     }
     function inn() {
+        if($('.map_wrap').css('display') == 'none'){
+            $('.map_wrap').css('display', 'block');
+        }
         $('#AD5').trigger("click");
     }
 </script>
