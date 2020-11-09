@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://kit.fontawesome.com/fee8376c66.js" crossorigin="anonymous"></script>
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js"></script>
+      <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.3/TweenMax.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -34,85 +33,66 @@
             </g>
         </svg>
     </div>
-
     <div id="title">
-        <p id = "home">제목제목</p>
-
-        {% comment %} <p>
-            <a href="{% url 'account:profile' %}">유저페이지</a> 
-        </p> {% endcomment %}
+        <p id = "home">제목제목<p>
     </div>
-    <i class="fas fa-plane"></i>
-    <button id ="modal_open" onclick="modal_open()">여행지 검색</button>
+
+    <button id ="modal_open"><i class="fas fa-search"></i></button>
 
     <div class = "modal">
         <div id ="modal">
             <div id = "modal_content">
                 <div class = "modal_top">
-                    <button id = "modal_close" onclick="modal_close()"><i class="fas fa-times"></i></button>
+                    <button id = "modal_close"><i class="fas fa-times"></i></button>
                 </div>
 
-<<<<<<< Updated upstream
-                <form action = "{% url 'FinalApp:place_list' %}" method="POST" id ="photo_form" enctype="multipart/form-data">
+                <form action = "{% url 'FinalApp:place_list' %}" id ="photo_form" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class = "modal_bottom">
                         <div class="filebox"> 
                             <label for="file">사진 첨부</label> 
-                            <input type="file" id="file" accept="image/*" name = "photo" required>
+                            <input type="file" id="file" name="photo" >
                         </div>
 
-                        <button id = "submit">장소 추천받기</button>
-=======
-                <form action = "/place" id ="photo_form">
-                    <div class = "modal_bottom">
-                        <div class="filebox"> 
-                            <label for="file">사진 첨부</label> 
-                            <input type="file" id="file" accept="image/*" required>
-                        </div>
-
-                        <button type = "button" id = "submit">장소 추천받기</button>
->>>>>>> Stashed changes
+                        <input type = "submit" id = "submit" value="장소 추천받기">
                     </div>
                 </form>
             </div>
             <div id="modal_layer"></div>
         </div> 
-<<<<<<< Updated upstream
-    </div>    
-    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-=======
     </div>
 
-    <script>  
+    <script>
+    
+        window.onload = function() {
+           $("#loading").hide();
+        }
+    
         document.getElementById("modal_open").onclick = function() {
             document.getElementById("modal").style.display = "block";
         }
         document.getElementById("modal_close").onclick = function() {
             document.getElementById("modal").style.display = "none";
         }
-        
-        var fileName;
         $("#file").on('change',function(){
-            fileName = $("#file").val();
-            if(fileName != null) {
-                $('#submit').css('color', '#E16350');
-            }
+            var fileName = $("#file").val();
         });
 
-         $("#submit").on('click',function() {
-            if(fileName != null) {
-                setTimeout(function(){
-                    $('#submit').attr('type', 'submit');
-                    $('#submit').trigger("click");
-                    console.log("test");
-                }, 3000);
-
-                $("#title").css('display', 'none');
-                $("#modal_open").css('display', 'none');
-                $("#modal").css('display', 'none');
-                $("#loading").css('display', 'block');
-            }
-        });
+        
+        $('#photo_form').submit(function(){
+            var myVar;
+            myVar = setTimeout(showPage, 3000);            
+            /*
+            $("#title").hide();
+            $(".modal").hide();
+            $('#loading').show();
+            sleep(10000);
+            return true;*/
+        })
+        
+        function showPage() {
+             $("#loading").show();
+        }
 
         TweenMax.set('#circlePath', {
             attr: {
@@ -221,6 +201,5 @@
     </script>
 
     
->>>>>>> Stashed changes
 </body>
 </html>
