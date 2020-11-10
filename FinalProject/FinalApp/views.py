@@ -96,78 +96,29 @@ def place_detail(request):
         festival = {}
         if context['map']['address'].split(' ')[0] == "서울특별시":
             areaCode = 1
-            url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
-            event = requests.get(url)
-            event = event.json()
-            if event['response']['body']['totalCount'] >= 2:
-                for x in event['response']['body']['items']['item']:
-                    festival[x['title']] = x
-            context['festival'] = festival
         elif context['map']['address'].split(' ')[0] == "인천광역시":
             areaCode = 2
-            url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
-            event = requests.get(url)
-            event = event.json()
-            if event['response']['body']['totalCount'] >= 2:
-                for x in event['response']['body']['items']['item']:
-                    festival[x['title']] = x
-            context['festival'] = festival
         elif context['map']['address'].split(' ')[0] == "대구광역시":
             areaCode = 4
-            url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
-            event = requests.get(url)
-            event = event.json()
-            if event['response']['body']['totalCount'] >= 2:
-                for x in event['response']['body']['items']['item']:
-                    festival[x['title']] = x
-            context['festival'] = festival
         elif context['map']['address'].split(' ')[0] == "광주광역시":
             areaCode = 5
-            url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
-            event = requests.get(url)
-            event = event.json()
-            if event['response']['body']['totalCount'] >= 2:
-                for x in event['response']['body']['items']['item']:
-                    festival[x['title']] = x
-            context['festival'] = festival
         elif context['map']['address'].split(' ')[0] == "부산광역시":
             areaCode = 6
-            url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
-            event = requests.get(url)
-            event = event.json()
-            if event['response']['body']['totalCount'] >= 2:
-                for x in event['response']['body']['items']['item']:
-                    festival[x['title']] = x
-            context['festival'] = festival
         elif context['map']['address'].split(' ')[0] == "경기도":
             areaCode = 31
-            url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
-            event = requests.get(url)
-            event = event.json()
-            if event['response']['body']['totalCount'] >= 2:
-                for x in event['response']['body']['items']['item']:
-                    festival[x['title']] = x
-            context['festival'] = festival
         elif context['map']['address'].split(' ')[0] == "충청남도":
             areaCode = 34
-            url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
-            event = requests.get(url)
-            event = event.json()
-            if event['response']['body']['totalCount'] >= 2:
-                for x in event['response']['body']['items']['item']:
-                    festival[x['title']] = x
-            context['festival'] = festival
         elif context['map']['address'].split(' ')[0] == "경상북도":
             areaCode = 35
-            url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
-            event = requests.get(url)
-            event = event.json()
-            if event['response']['body']['totalCount'] >= 2:
-                for x in event['response']['body']['items']['item']:
-                    festival[x['title']] = x
-            context['festival'] = festival
-
-
+    
+        url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
+        event = requests.get(url)
+        event = event.json()
+        if event['response']['body']['totalCount'] >= 2:
+            for x in event['response']['body']['items']['item']:
+                festival[x['title']] = x
+        context['festival'] = festival
+        
         return render(request, 'place_detail.html', context)
 
     else:
