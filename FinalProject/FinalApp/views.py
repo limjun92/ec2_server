@@ -127,6 +127,9 @@ def place_detail(request):
         return render(request, 'index.html')
 
 def place_reco_list(request):
+    if request.method == "POST":
+        print(request.POST['chk_region'])
+        print(request.POST['chk_theme'])
     return render(request, 'place_reco_list.html')
 
     

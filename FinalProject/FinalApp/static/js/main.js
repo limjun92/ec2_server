@@ -4,7 +4,15 @@ function modal_open() {
 function modal_close() {
     document.getElementById("modal").style.display = "none";
 }
-
+function modal_open2() {
+    document.getElementById("modal2").style.display = "block";
+}
+function modal_close2() {
+    document.getElementById("modal2").style.display = "none";
+    $("input:radio[name='chk_region']").prop("checked", false);
+    $("input:radio[name='chk_theme']").prop("checked", false);
+    $('#submit2').css('color', 'black');
+}
 
 var fileName;
 $("#file").on('change',function(){
@@ -13,6 +21,14 @@ $("#file").on('change',function(){
         $('#submit').css('color', '#018ABE');
     }
 });
+
+function radio_btn() {
+    if ($("input:radio[name='chk_region']").is(":checked")) {
+        if($("input:radio[name='chk_theme']").is(":checked")){
+            $('#submit2').css('color', '#018ABE');
+        }
+    }  
+}
 
 $("#submit").on('click',function() {
     if(fileName != null) {
