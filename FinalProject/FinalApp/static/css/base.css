@@ -16,7 +16,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  height: 200px;
+  height: 150px;
   font-size: 25px;    
   background: linear-gradient(-135deg, rgb(85, 165, 203), #D6EBEE) fixed;
   color: white;
@@ -29,5 +29,9 @@ body {
 }
 #title .info{
 font-family: 'Noto Sans KR', sans-serif;
-font-size: 20px;
+font-size: 25px;
+margin: 0 10px 10px;
+}
+#title .info #address{
+  font-size: 15px;
 }
