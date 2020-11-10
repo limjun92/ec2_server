@@ -116,6 +116,8 @@ def place_detail(request):
         event = event.json()
         if event['response']['body']['totalCount'] >= 2:
             for x in event['response']['body']['items']['item']:
+                if 'firstimage' not in x:
+                    x['firstimage'] = 'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5002%2F2018%2F10%2F05%2F0001079994_001_20181005094917565.jpg&type=sc960_832'    
                 festival[x['title']] = x
         context['festival'] = festival
         
