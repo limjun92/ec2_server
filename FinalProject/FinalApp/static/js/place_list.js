@@ -24,5 +24,17 @@ function showSlides(n) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
   slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
+  // dots[slideIndex-1].className += " active";
+}
+
+function first_img(){
+  $('#first_form').submit();
+}
+
+function second_img(){
+  $('#second_form').submit();
+}
+
+function third_img(){
+  $('#third_form').submit();
 }
