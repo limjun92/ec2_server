@@ -76,7 +76,7 @@
     <button onclick="store()">편의점</button>
     <button onclick="inn()">숙박</button>
     <button>
-    <a href="https://map.kakao.com/link/to/{{map.name}},{{map.lat}},{{map.long}}">
+    <a href="https://map.kakao.com/link/to/{{map.name}},{{map.lat}},{{map.long}}" style="color: #018ABE;">
         <i class="fas fa-route" style="font-size:30px"></i>
     </a>
     </button>
@@ -135,12 +135,10 @@
         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
         navigator.geolocation.getCurrentPosition(function(position) {
             
-            var lat = position.coords.latitude, // 위도
-                lon = position.coords.longitude; // 경도
-            // var x = JSON.parse('{{x}}');
-            // var y = JSON.parse('{{y}}');
+            var lat = '{{map.lat}}';
+            var long = '{{map.long}}';
     
-            var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            var locPosition = new kakao.maps.LatLng(lat, long); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             
             // 마커와 인포윈도우를 표시합니다
             displayMarker(locPosition);   
