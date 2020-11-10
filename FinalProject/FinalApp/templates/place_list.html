@@ -14,9 +14,11 @@
 
             <!-- Full-width images with number and caption text -->
             <div class="mySlides fade">
-                <div class="numbertext">1 / 3</div>
-                <img src="{% static first.img_url %}" style="width:100%">
-                <div class="text">Caption Text</div>
+                <div class="img_wrap">
+                    <div class="img"><img src="{% static first.img_url %}" style="width:100%"></div>
+                    <div class="numbertext">1 / 3</div>
+                </div>
+                <!-- <div class="text">Caption Text</div> -->
                 <form action = "{% url 'FinalApp:place_detail' %}" class = "img_form" id ="first_form" method="POST">
                     {% csrf_token %}
                     <input type = "text" value = "{{first.name}}" name = "name">
@@ -26,20 +28,25 @@
                     <input type = "text" value = "{{first.img_url}}" name = "img_url">
                 </form>
                 <div class="place_info">
-                    <div class="left">
+                    <div class="top">
                         <h3>{{first.name}}</h3>
+                    </div>
+                    <div class="middle">
+                        <i class="fas fa-map-marker-alt" style="color:rgb(1, 138, 190, 0.8)"></i>
                         <h4>{{first.address}}</h4>
                     </div>
-                    <div class="right">
+                    <div class="bottom">
                         <input type="button" id="img_btn" value="바로가기" onclick="first_img()">
                     </div>
                 </div>
             </div>
         
             <div class="mySlides fade">
-                <div class="numbertext">2 / 3</div>
-                <img src="{% static second.img_url %}" style="width:100%">
-                <div class="text">Caption Two</div>
+                <div class="img_wrap">
+                    <div class="img"><img src="{% static second.img_url %}" style="width:100%"></div>
+                    <div class="numbertext">2 / 3</div>
+                </div>
+                <!-- <div class="text">Caption Two</div> -->
                 
                 <form action = "{% url 'FinalApp:place_detail' %}" class = "img_form" id ="second_form" method="POST">
                     {% csrf_token %}
@@ -49,22 +56,26 @@
                     <input type = "text" value = "{{second.lat}}" name = "lat">
                     <input type = "text" value = "{{second.img_url}}" name = "img_url">
                 </form>
-                
                 <div class="place_info">
-                    <div class="left">
+                    <div class="top">
                         <h3>{{second.name}}</h3>
+                    </div>
+                    <div class="middle">
+                        <i class="fas fa-map-marker-alt" style="color:rgb(1, 138, 190, 0.8)"></i>
                         <h4>{{second.address}}</h4>
                     </div>
-                    <div class="right">
-                        <input type="button" id="img_btn" value="바로가기"  onclick="second_img()">
+                    <div class="bottom">
+                        <input type="button" id="img_btn" value="바로가기" onclick="first_img()">
                     </div>
                 </div>
             </div>
         
             <div class="mySlides fade">
-                <div class="numbertext">3 / 3</div>
-                <img src="{% static third.img_url %}" style="width:100%">
-                <div class="text">Caption Three</div>
+                <div class="img_wrap">
+                    <div class="img"><img src="{% static third.img_url %}" style="width:100%"></div>
+                    <div class="numbertext">3 / 3</div>
+                </div>
+                <!-- <div class="text">Caption Three</div> -->
 
                 <form action = "{% url 'FinalApp:place_detail' %}" class = "img_form" id ="third_form" method="POST">
                     {% csrf_token %}
@@ -74,25 +85,17 @@
                     <input type = "text" value = "{{third.lat}}" name = "lat">
                     <input type = "text" value = "{{third.img_url}}" name = "img_url">
                 </form>
-
                 <div class="place_info">
-                    <div class="left">
+                    <div class="top">
                         <h3>{{third.name}}</h3>
+                    </div>
+                    <div class="middle">
+                        <i class="fas fa-map-marker-alt" style="color:rgb(1, 138, 190, 0.8)"></i>
                         <h4>{{third.address}}</h4>
                     </div>
-                    <div class="right">
-                        <input type="button" id="img_btn" value="바로가기" onclick="third_img()">
+                    <div class="bottom">
+                        <input type="button" id="img_btn" value="바로가기" onclick="first_img()">
                     </div>
-                </div>
-            </div>
-
-            <!-- 장소 정보 나타나는 부분-->
-            <div class="place_info">
-                <div class="left">
-                    왼쪽입니다(장소 이름, 주소, 설명(?))
-                </div>
-                <div class="right">
-                    오른쪽입니다(장소 바로가기 버튼)
                 </div>
             </div>
 
@@ -102,17 +105,6 @@
         </div>
         <br>
     </div>
-    <script>
-        function first_img(){
-            $('#first_form').submit();
-        }
-        function second_img(){
-            $('#second_form').submit();
-        }
-        function third_img(){
-            $('#third_form').submit();
-        }
-    </script>
    
     <script type="text/javascript" src="{% static 'js/place_list.js' %}"></script>
 
