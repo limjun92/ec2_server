@@ -4,7 +4,37 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/place_detail.css' %}" />
 
+<style>
+    .festival_wrap {
+        display: none;
+        flex-direction: column;
+    }
+    .festival_wrap #festival{
+        display: flex;
+    }
+    .festival_wrap img {
+        width: 50%;
+        height: 200px;
+    }
+    .festival_wrap .festival_info {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        justify-content: space-evenly;
+    }
+</style>
 <div class = "map_container">
+    <div class = "festival_wrap">
+        <div id = "festival">
+            <img src = "">
+            <div class = "festival_info">
+                <p>행사 이름</p>
+                <p>행사 장소</p>
+                <p>개최 날짜</p>
+                <p>연락처</p>
+            </div>
+        </div>
+    </div>
     <div class="map_wrap">
         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
         <ul id="category" style="display: none;">
@@ -37,52 +67,47 @@
 </div>
 
 <script>
+    $('#name').text({{name}});
     function festival() {
         if ($('.map_wrap').css('display') == 'block'){
             $('.map_wrap').css('display', 'none');
+            $('.festival_wrap').css('display', 'flex');
+        }
+        else{
+            removeMarker();
+            $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
         }
     }
     function restaurant() {
         if($('.map_wrap').css('display') == 'none'){
             $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
         }
         $('#FD6').trigger("click");
     }
     function cafe() {
         if($('.map_wrap').css('display') == 'none'){
             $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
         }
         $('#CE7').trigger("click");
     }
     function store() {
         if($('.map_wrap').css('display') == 'none'){
             $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
         }
         $('#CS2').trigger("click");
     }
     function inn() {
         if($('.map_wrap').css('display') == 'none'){
             $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
         }
         $('#AD5').trigger("click");
     }
 </script>
-{% comment %} 
-<br>
-<br>
-<br>
-<br>
-<br>
-<h1>
-    여기는 장소 이름이 나올거임
-</h1>
-
-<a href="https://map.kakao.com/link/to/카카오판교오피스,37.402056,127.108212">
-    <h2>
-        바로가기
-    </h2>
-</a> {% endcomment %}
-
 
 <!-- 카카오 스크립트 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94aabb81b707be0860ffd16c73a42929&libraries=services"></script>
