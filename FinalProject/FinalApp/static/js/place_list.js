@@ -38,3 +38,6 @@ function second_img(){
 function third_img(){
   $('#third_form').submit();
 }
+
+$('#name').text('');
+$('#address').text('');
