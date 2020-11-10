@@ -75,6 +75,12 @@ def place_list(request):
 
 
 def place_detail(request):
+    if request.method == "POST":
+        print(request.POST['name'])
+        print(request.POST['address'])
+        print(request.POST['long'])
+        print(request.POST['lat'])
+        print(request.POST['img_url'])
     return render(request, 'place_detail.html')
 
 def place_route(request):
