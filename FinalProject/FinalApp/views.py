@@ -126,5 +126,11 @@ def place_detail(request):
     else:
         return render(request, 'index.html')
 
+def place_reco_list(request):
+    return render(request, 'place_reco_list.html')
+
+    
 def place_route(request):
     return render(request, 'place_route.html')
+
+
