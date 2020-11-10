@@ -13,6 +13,7 @@ import requests
 
 class_name = pd.read_csv('location_amend_1.csv', encoding='utf-8')
 
+
 def main(request):
     return render(request, 'main.html')
 
@@ -127,10 +128,25 @@ def place_detail(request):
         return render(request, 'index.html')
 
 def place_reco_list(request):
+    reco_list =  pd.read_csv('reco_location.csv')
+    reco_list.drop(labels='Unnamed: 0', axis=1, inplace=True)
+    context = {
+        'reco_list':{
+        }
+    }
+    reco_list_temp = {}
     if request.method == "POST":
-        print(request.POST['chk_region'])
-        print(request.POST['chk_theme'])
-    return render(request, 'place_reco_list.html')
+        reco = reco_list[(reco_list['area'] == request.POST['chk_region']) & (reco_list['theme'] == request.POST['chk_theme'])]
+        for item in reco.values:
+            reco_list_temp[item[0]] = {
+                'name': item[0],
+                'address': item[1],
+                'long': item[2],
+                'lat': item[3]
+                }
+    context['reco_list'] = reco_list_temp
+    print(context)
+    return render(request, 'place_reco_list.html', context)
 
     
 def place_route(request):

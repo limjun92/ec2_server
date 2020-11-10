@@ -4,5 +4,9 @@
     <h1>
         여기는 추천 리스트 페이지
     </h1>
-
+    {% for key, val in reco_list.items %}
+        <h1>
+            {{val.name}}
+        </h1>
+    {% endfor %}
 {% endblock %}
