@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
         
 {% block body %}
+    {% load static %}
 <style>
     .reco_container {
         width: 100%;
@@ -12,7 +13,7 @@
     }
     .reco_img {
         width: 47%;
-        height: 200px;
+        height: 100%;
     }
     .reco_info {
         display: flex;
@@ -47,7 +48,7 @@
     {% for key, val in reco_list.items %}
     <div class = "reco">
         <div class = "reco_img">
-            <img src = "{{ val.img_url }}">
+            <img src = "{% static val.img_url %}">
         </div>
         <div class = "reco_info">
             <p style = "color: #018ABE; font-size: 16px;">{{val.name}}</p>
