@@ -151,7 +151,6 @@ def place_reco_list(request):
                 'img_url': 'img/' + item[-1] 
                 }
     context['reco_list'] = reco_list_temp
-    print(context)
     return render(request, 'place_reco_list.html', context)
 
     
