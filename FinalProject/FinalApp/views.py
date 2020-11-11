@@ -99,18 +99,24 @@ def place_detail(request):
             areaCode = 1
         elif context['map']['address'].split(' ')[0] == "인천광역시":
             areaCode = 2
+        elif context['map']['address'].split(' ')[0] == "대전광역시":
+            areaCode = 3
         elif context['map']['address'].split(' ')[0] == "대구광역시":
             areaCode = 4
         elif context['map']['address'].split(' ')[0] == "광주광역시":
             areaCode = 5
         elif context['map']['address'].split(' ')[0] == "부산광역시":
             areaCode = 6
+        elif context['map']['address'].split(' ')[0] == "울산광역시":
+            areaCode = 7
         elif context['map']['address'].split(' ')[0] == "경기도":
             areaCode = 31
         elif context['map']['address'].split(' ')[0] == "충청남도":
             areaCode = 34
         elif context['map']['address'].split(' ')[0] == "경상북도":
             areaCode = 35
+        elif context['map']['address'].split(' ')[0] == "제주특별자치도":
+            areaCode = 39
     
         url = f'http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?serviceKey={key}&numOfRows=100&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&listYN=Y&areaCode={areaCode}&eventStartDate={today}&_type=json'
         event = requests.get(url)
@@ -129,7 +135,6 @@ def place_detail(request):
 
 def place_reco_list(request):
     reco_list =  pd.read_csv('reco_location.csv')
-    reco_list.drop(labels='Unnamed: 0', axis=1, inplace=True)
     context = {
         'reco_list':{
         }
@@ -142,7 +147,8 @@ def place_reco_list(request):
                 'name': item[0],
                 'address': item[1],
                 'long': item[2],
-                'lat': item[3]
+                'lat': item[3],
+                'img_url': 'img/' + item[-1] 
                 }
     context['reco_list'] = reco_list_temp
     print(context)
