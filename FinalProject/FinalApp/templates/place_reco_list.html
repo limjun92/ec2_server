@@ -21,10 +21,22 @@
         justify-content: center;
         font-size: 13px;
     }
+    .reco_info p {
+        margin: 5% 2% 0 2%;
+    }
+    .reco_info p i {
+        color: #018ABE;
+    }
     .under_bar {
         width: 100%;
         height: 20px;
         background-color: rgb(85, 165, 203);
+    }
+    #img_btn {
+        background-color: transparent;
+        border: none;
+        margin-top: 10px;
+        color: #018ABE;
     }
 </style>
 <div class = "reco_container">
@@ -33,7 +45,17 @@
         <div class = "reco_img"></div>
         <div class = "reco_info">
             <p style = "color: #018ABE; font-size: 16px;">{{val.name}}</p>
-            <p>{{val.address}}</p>
+            <p><i class="fas fa-map-marker-alt"></i> {{val.address}}</p>
+            <form action = "{% url 'FinalApp:place_detail' %}" class = "img_form" method="POST">
+                {% csrf_token %}
+                <input type = "hidden" value = "{{val.name}}" name = "name">
+                <input type = "hidden" value = "{{val.address}}" name = "address">
+                <input type = "hidden" value = "{{val.long}}" name = "long">
+                <input type = "hidden" value = "{{val.lat}}" name = "lat">
+                <input type = "hidden" value = "{{val.img_url}}" name = "img_url">
+                <input type="submit" id="img_btn" value="바로가기">
+            </form>
+           
         </div>
     </div>
     {% endfor %}
