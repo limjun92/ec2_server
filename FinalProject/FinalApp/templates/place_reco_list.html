@@ -38,11 +38,17 @@
         margin-top: 10px;
         color: #018ABE;
     }
+    form {
+        display: flex;
+        justify-content: center;
+    }
 </style>
 <div class = "reco_container">
     {% for key, val in reco_list.items %}
     <div class = "reco">
-        <div class = "reco_img"></div>
+        <div class = "reco_img">
+            <img src = "{{ val.img_url }}">
+        </div>
         <div class = "reco_info">
             <p style = "color: #018ABE; font-size: 16px;">{{val.name}}</p>
             <p><i class="fas fa-map-marker-alt"></i> {{val.address}}</p>
