@@ -36,7 +36,9 @@ $("#submit").on('click',function() {
         $("#title").css('display', 'none');
         $("#airplane").css('display', 'none');
         $("#modal_open").css('display', 'none');
+        $("#modal_open2").css('display', 'none');
         $("#modal").css('display', 'none');
+        $("#modal2").css('display', 'none');
         $("#loading").css('display', 'block');
     }
 });
