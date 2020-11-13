@@ -3,36 +3,103 @@
     
 {% block body %}
     {% load static %}
+    <style>
+        .img_form {
+            display: none;
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="{% static 'css/place_list.css' %}" />
     <div class = "gallery">
         <div class="slideshow-container">
 
             <!-- Full-width images with number and caption text -->
             <div class="mySlides fade">
-            <div class="numbertext">1 / 3</div>
-            <img src="{% static 'img/img1.JPG' %}" style="width:100%">
-            <div class="text">Caption Text</div>
-            </div>
-        
-            <div class="mySlides fade">
-            <div class="numbertext">2 / 3</div>
-            <img src="{% static 'img/img2.JPG' %}" style="width:100%">
-            <div class="text">Caption Two</div>
-            </div>
-        
-            <div class="mySlides fade">
-            <div class="numbertext">3 / 3</div>
-            <img src="{% static 'img/img3.JPG' %}" style="width:100%">
-            <!-- <div class="text">Caption Three</div> -->
-            </div>
-
-            <!-- 장소 정보 나타나는 부분-->
-            <div class="place_info">
-                <div class="left">
-                    왼쪽입니다(장소 이름, 주소, 설명(?))
+                <div class="img_wrap">
+                    <div class="img"><img src="{% static first.img_url %}" style="width:100%"></div>
+                    <div class="numbertext">1 / 3</div>
                 </div>
-                <div class="right">
-                    오른쪽입니다(장소 바로가기 버튼)
+                <!-- <div class="text">Caption Text</div> -->
+                <form action = "{% url 'FinalApp:place_detail' %}" class = "img_form" id ="first_form" method="POST">
+                    {% csrf_token %}
+                    <input type = "text" value = "{{first.name}}" name = "name">
+                    <input type = "text" value = "{{first.address}}" name = "address">
+                    <input type = "text" value = "{{first.long}}" name = "long">
+                    <input type = "text" value = "{{first.lat}}" name = "lat">
+                    <input type = "text" value = "{{first.img_url}}" name = "img_url">
+                </form>
+                <div class="place_info">
+                    <div class="top">
+                        <h3>{{first.name}}</h3>
+                    </div>
+                    <div class="middle">
+                        <i class="fas fa-map-marker-alt" style="color:rgb(1, 138, 190, 0.8)"></i>
+                        <h4>{{first.address}}</h4>
+                    </div>
+                    <div class="bottom">
+                        <input type="button" id="img_btn" value="바로가기" onclick="first_img()">
+                    </div>
+                </div>
+            </div>
+        
+            <div class="mySlides fade">
+                <div class="img_wrap">
+                    <div class="img"><img src="{% static second.img_url %}" style="width:100%"></div>
+                    <div class="numbertext">2 / 3</div>
+                </div>
+                <!-- <div class="text">Caption Two</div> -->
+                
+                <form action = "{% url 'FinalApp:place_detail' %}" class = "img_form" id ="second_form" method="POST">
+                    {% csrf_token %}
+                    <input type = "text" value = "{{second.name}}" name = "name">
+                    <input type = "text" value = "{{second.address}}" name = "address">
+                    <input type = "text" value = "{{second.long}}" name = "long">
+                    <input type = "text" value = "{{second.lat}}" name = "lat">
+                    <input type = "text" value = "{{second.img_url}}" name = "img_url">
+                </form>
+                <div class="place_info">
+                    <div class="top">
+                        <h3>{{second.name}}</h3>
+                    </div>
+                    <div class="middle">
+                        <div class="middle_in">
+                            <i class="fas fa-map-marker-alt" style="color:rgb(1, 138, 190, 0.8)"></i>
+                            <h4>{{second.address}}</h4>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <input type="button" id="img_btn" value="바로가기" onclick="second_img()">
+                    </div>
+                </div>
+            </div>
+        
+            <div class="mySlides fade">
+                <div class="img_wrap">
+                    <div class="img"><img src="{% static third.img_url %}" style="width:100%"></div>
+                    <div class="numbertext">3 / 3</div>
+                </div>
+                <!-- <div class="text">Caption Three</div> -->
+
+                <form action = "{% url 'FinalApp:place_detail' %}" class = "img_form" id ="third_form" method="POST">
+                    {% csrf_token %}
+                    <input type = "text" value = "{{third.name}}" name = "name">
+                    <input type = "text" value = "{{third.address}}" name = "address">
+                    <input type = "text" value = "{{third.long}}" name = "long">
+                    <input type = "text" value = "{{third.lat}}" name = "lat">
+                    <input type = "text" value = "{{third.img_url}}" name = "img_url">
+                </form>
+                <div class="place_info">
+                    <div class="top">
+                        <h3>{{third.name}}</h3>
+                    </div>
+                    <div class="middle">
+                        <div class="middle_in">
+                            <i class="fas fa-map-marker-alt" style="color:rgb(1, 138, 190, 0.8)"></i>
+                            <h4>{{third.address}}</h4>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <input type="button" id="img_btn" value="바로가기" onclick="third_img()">
+                    </div>
                 </div>
             </div>
 
@@ -41,23 +108,8 @@
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
         <br>
-        
-        <!-- The dots/circles -->
-        <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
-
-        
     </div>
-
+   
     <script type="text/javascript" src="{% static 'js/place_list.js' %}"></script>
-<!-- 
-    <script>
-        document.getElementById("img_btn").onclick = function() {
-            location.href = "/detail";
-        }
-    </script> -->
 
 {% endblock %}

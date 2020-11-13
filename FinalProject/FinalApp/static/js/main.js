@@ -4,27 +4,41 @@ function modal_open() {
 function modal_close() {
     document.getElementById("modal").style.display = "none";
 }
-
+function modal_open2() {
+    document.getElementById("modal2").style.display = "block";
+}
+function modal_close2() {
+    document.getElementById("modal2").style.display = "none";
+    $("input:radio[name='chk_region']").prop("checked", false);
+    $("input:radio[name='chk_theme']").prop("checked", false);
+    $('#submit2').css('color', 'black');
+}
 
 var fileName;
 $("#file").on('change',function(){
     fileName = $("#file").val();
     if(fileName != null) {
-        $('#submit').css('color', '#E16350');
+        $('#submit').css('color', '#018ABE');
     }
 });
 
+function radio_btn() {
+    if ($("input:radio[name='chk_region']").is(":checked")) {
+        if($("input:radio[name='chk_theme']").is(":checked")){
+            $('#submit2').css('color', '#018ABE');
+        }
+    }  
+}
+
+
 $("#submit").on('click',function() {
     if(fileName != null) {
-        setTimeout(function(){
-            $('#submit').attr('type', 'submit');
-            $('#submit').trigger("click");
-            console.log("test");
-        }, 3000);
-
         $("#title").css('display', 'none');
+        $("#airplane").css('display', 'none');
         $("#modal_open").css('display', 'none');
+        $("#modal_open2").css('display', 'none');
         $("#modal").css('display', 'none');
+        $("#modal2").css('display', 'none');
         $("#loading").css('display', 'block');
     }
 });

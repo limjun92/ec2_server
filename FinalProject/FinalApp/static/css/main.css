@@ -1,32 +1,45 @@
 @font-face {
-  font-family: '국민체조L';
-  src: url('../font/210 국민체조L.ttf');
+  font-family: '감성주점L';
+  src: url('../font/210 감성주점L.ttf');
+}
+@font-face {
+  font-family: '감성주점B';
+  src: url('../font/210 감성주점B.ttf');
 }
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #E16350;
-  font-family: '국민체조L';
+  background: linear-gradient(-135deg, #018ABE, #D6EBEE) fixed;
+  /* font-family: 'Noto Sans KR', sans-serif; */
+  font-family: '감성주점L';
 }
 #title {
   display: flex;
   justify-content: center;
   width: 100%;
   height: 90px;
-  margin-top: 150px;
+  margin-top: 120px;
   font-size: 45px;
   color: white;
 }
-
-#modal_open{
-  width: 200px;
-  height: 50px;
-  margin-top: 20%;
-  background-color: transparent;
-  border: none;
-  font-size: 45px;
+.fa-plane {
+  font-size: 100px;
+  margin-top: 120px;
   color: white;
+}
+.modal_button{
+  width: 200px;
+  height: 60px;
+  margin-top: 100px;
+  background-color: transparent;
+  border: 1px solid white;
+  font-size: 25px;
+  color: white;
+  font-family: '감성주점L';
+}
+#modal_open2 {
+  margin-top: 20px;
 }
 #modal_close{
   background-color: transparent;
@@ -41,23 +54,25 @@ body {
   align-items: center;
 }
 
-#modal {
+.modal_container {
   display: none;
   position:relative;
   width:100%;
   height:100%;
   z-index:1;
-  top: -60px;
+  margin-top: -300px;
 }
-
-#modal #modal_content {
+#modal2{
+  margin-top: -600px;
+}
+.modal_container #modal_content {
   width:300px;
   margin:auto;
   background:#fff;
   border:2px solid #666;
 }
 
-#modal #modal_layer {
+.modal_container #modal_layer {
   position:fixed;
   top:0;
   left:0;
@@ -71,16 +86,16 @@ body {
   display: flex;
   justify-content: flex-end;
   height: 40px;
-  background-color: #E16350;
+  background-color:#018ABE;
 }
 
 .modal_top input[type="button"] {
   background-color: transparent;
   border: none;
-  font-family: '국민체조L';
   font-size: 25px;
   color: white;
 }
+
 .modal_bottom {
   display: flex;
   flex-direction: column;
@@ -89,7 +104,40 @@ body {
   height: 150px;
 }
 
-.modal_bottom #submit {
+#modal_bottom2 {
+  flex-direction: row;
+  justify-content: unset;
+  height: 500px;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.radio_input input[type="radio"]{
+  display: none;
+  height: 35px;
+}
+
+.radio_input input[type="radio"] + span{
+  display:inline-block;
+  background:none;
+  border:1px solid #dfdfdf; 
+  border-radius: 15px;
+  padding:0px 10px;
+  text-align:center;
+  height:35px;
+  line-height:33px;
+  cursor:pointer;
+  margin-bottom: 10px;
+  }
+
+.radio_input input[type="radio"]:checked + span{
+  border:1px solid #018ABE;
+  background:#018ABE;
+  color:#fff;
+}
+
+.modal_bottom .submit {
   background-color: transparent;
   border: none;
   color: black;
@@ -115,8 +163,16 @@ body {
   cursor: pointer;
   border: 1px solid #ebebeb;
   border-radius: 5px;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
+#region {
+  text-align: center;
+}
+#theme {
+  margin: 25px 0 30px 0;
+  text-align: center;
+}
 
 /* loading */
 #loading {

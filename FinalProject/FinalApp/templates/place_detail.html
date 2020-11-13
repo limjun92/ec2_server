@@ -2,80 +2,129 @@
     
 {% block body %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/place_detail.css' %}" />
 
 <style>
-    .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px; }
-    .map_wrap {position:relative;width:50%;height:350px;}
-    #category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
-    #category li {float:left;list-style: none;width:50px;px;border-right:1px solid #acacac;padding:6px 0;text-align: center; cursor: pointer;}
-    #category li.on {background: #eee;}
-    #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
-    #category li:last-child{margin-right:0;border-right:0;}
-    #category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-    #category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
-    #category li .bank {background-position: -10px 0;}
-    #category li .mart {background-position: -10px -36px;}
-    #category li .pharmacy {background-position: -10px -72px;}
-    #category li .oil {background-position: -10px -108px;}
-    #category li .cafe {background-position: -10px -144px;}
-    #category li .store {background-position: -10px -180px;}
-    #category li.on .category_bg {background-position-x:-46px;}
-    .placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
-    .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
-    .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
-    .placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-    .placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
-    .placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-    .placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
-    .placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
-    .placeinfo .tel {color:#0f7833;}
-    .placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
+    .festival_wrap {
+        display: none;
+        flex-direction: column;
+    }
+    .festival_wrap #festival{
+        display: flex;
+        justify-content: space-between;
+        margin: 2% 2% 0 2%;
+    }
+    .festival_wrap img {
+        width: 47%;
+        height: 200px;
+    }
+    .festival_wrap .festival_info {
+        display: flex;
+        flex-direction: column;
+        width: 47%;
+        justify-content: center;
+    }
+    .festival_wrap .festival_info #festival_title {
+        font-size: 16px;
+        margin-bottom: 5px;
+        color: #018ABE;
+    }
+    .festival_wrap .festival_info p {
+        font-size: 13px;
+    }
 </style>
-
-
-
-<div class = "map">지도오</div>
+<div class = "map_container">
+    <div class = "festival_wrap">
+        {% for k, v in festival.items %} 
+        <div id = "festival">
+            <img src = "{{ v.firstimage }}">
+            <div class = "festival_info">
+                <p id="festival_title">{{ v.title }}</p>
+                <p>장소 : {{ v.addr1 }}</p>
+                <p>기간 : {{ v.eventstartdate }} ~ {{ v.eventenddate }}</p>
+                <p>연락처 : {{ v.tel }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="map_wrap">
+        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+        <ul id="category" style="display: none;">
+            <li id="FD6" data-order="0"> 
+                <span class="category_bg bank"></span>
+                음식점
+            </li>       
+            <li id="CE7" data-order="4"> 
+                <span class="category_bg cafe"></span>
+                카페
+            </li>  
+            <li id="CS2" data-order="5"> 
+                <span class="category_bg store"></span>
+                편의점
+            </li>      
+            <li id="AD5" data-order="5"> 
+                <span class="category_bg inn"></span>
+                숙박
+            </li>      
+        </ul>
+    </div>
+</div>
 <div class = "bottom">
-    <button>테스트</button>
-    <button>테스트</button>
-    <button>테스트</button>
-    <button>테스트</button>
-    <button>테스트</button>
-</div>
-<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <ul id="category">
-        <li id="FD6" data-order="0"> 
-            <span class="category_bg bank"></span>
-            음식점
-        </li>       
-        <li id="CE7" data-order="4"> 
-            <span class="category_bg cafe"></span>
-            카페
-        </li>  
-        <li id="CS2" data-order="5"> 
-            <span class="category_bg store"></span>
-            편의점
-        </li>      
-    </ul>
+    <button onclick="festival()">축제</button>
+    <button onclick="restaurant()">음식점</button>
+    <button onclick="cafe()">카페</button>
+    <button onclick="store()">편의점</button>
+    <button onclick="inn()">숙박</button>
+    <button>
+    <a href="https://map.kakao.com/link/to/{{map.name}},{{map.lat}},{{map.long}}" style="color: #018ABE;">
+        <i class="fas fa-route" style="font-size:30px"></i>
+    </a>
+    </button>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<h1>
-    여기는 장소 이름이 나올거임
-</h1>
-
-<a href="https://map.kakao.com/link/to/카카오판교오피스,37.402056,127.108212">
-    <h2>
-        바로가기
-    </h2>
-</a>
-
+<script>
+    $('#name').text('{{map.name}}');
+    $('#address').text('{{map.address}}');
+    function festival() {
+        if ($('.map_wrap').css('display') == 'block'){
+            $('.map_wrap').css('display', 'none');
+            $('.festival_wrap').css('display', 'flex');
+        }
+        else{
+            removeMarker();
+            $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
+        }
+    }
+    function restaurant() {
+        if($('.map_wrap').css('display') == 'none'){
+            $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
+        }
+        $('#FD6').trigger("click");
+    }
+    function cafe() {
+        if($('.map_wrap').css('display') == 'none'){
+            $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
+        }
+        $('#CE7').trigger("click");
+    }
+    function store() {
+        if($('.map_wrap').css('display') == 'none'){
+            $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
+        }
+        $('#CS2').trigger("click");
+    }
+    function inn() {
+        if($('.map_wrap').css('display') == 'none'){
+            $('.map_wrap').css('display', 'block');
+            $('.festival_wrap').css('display', 'none');
+        }
+        $('#AD5').trigger("click");
+    }
+</script>
 
 <!-- 카카오 스크립트 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=94aabb81b707be0860ffd16c73a42929&libraries=services"></script>
@@ -86,12 +135,10 @@
         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
         navigator.geolocation.getCurrentPosition(function(position) {
             
-            var lat = position.coords.latitude, // 위도
-                lon = position.coords.longitude; // 경도
-            var x = JSON.parse('{{x}}');
-            // var y = JSON.parse('{{y}}');
+            var lat = '{{map.lat}}';
+            var long = '{{map.long}}';
     
-            var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            var locPosition = new kakao.maps.LatLng(lat, long); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             
             // 마커와 인포윈도우를 표시합니다
             displayMarker(locPosition);   
