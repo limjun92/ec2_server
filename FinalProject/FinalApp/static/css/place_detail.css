@@ -1,6 +1,6 @@
 .map_container{
     width: 100%;
-    height: calc(100vh - 270px);
+    height: calc(100vh - 330px);
     overflow: auto;
 }
 .map_container .map_wrap {
